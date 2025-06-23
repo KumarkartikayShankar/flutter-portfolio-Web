@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:portfolio_web/pages/education.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:portfolio_web/components/sidebar.dart';
 import 'package:portfolio_web/pages/project_page.dart';
 import 'about_page.dart';
 import 'contact_page.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -25,8 +27,10 @@ class _HomePageState extends State<HomePage> {
       case 1:
         return const AboutPage();
       case 2:
-        return const ProjectsPage();
+        return const EducationPage(); // Added
       case 3:
+        return const ProjectsPage();
+      case 4:
         return const ContactPage();
       case 0:
       default:
@@ -191,7 +195,6 @@ class HomeContent extends StatelessWidget {
               width: 25,
               child: Image.asset(
                 assetPath,
-                
                 fit: BoxFit.contain,
               ),
             ),
@@ -301,7 +304,6 @@ class _HoverCardState extends State<HoverCard> {
   }
 }
 
-/// ✅ URL Launcher Function
 void _launchURL(String url) async {
   final uri = Uri.parse(url);
   if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
