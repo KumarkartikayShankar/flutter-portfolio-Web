@@ -38,7 +38,7 @@ class AboutPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'I am a passionate Flutter developer with experience in building beautiful, responsive applications for both Android and iOS platforms. I love turning ideas into real apps!',
+                  'I am a passionate Flutter developer with experience in building beautiful, responsive applications for Web, Android and iOS platforms. I love turning ideas into real apps!',
                   style: TextStyle(fontSize: 16, color: Colors.white70),
                 ),
                 const SizedBox(height: 30),
@@ -68,10 +68,13 @@ class AboutPage extends StatelessWidget {
     {'title': 'Firebase', 'desc': 'Authentication & Database'},
     {'title': 'REST APIs', 'desc': 'API Integration & Handling'},
     {'title': 'UI/UX Design', 'desc': 'Clean & Responsive Design'},
-    {'title': 'Node.js', 'desc': 'Backend with Express.js'},
+    {'title': 'UI/UX Design', 'desc': 'Clean & Responsive Design'},
     {'title': 'MongoDB', 'desc': 'NoSQL database'},
-    {'title': 'Isar DB', 'desc': 'Local database for Flutter'},
+    {'title': 'Deployment', 'desc':'Fast deployment of Web and Android app'},
     {'title': 'Git & GitHub', 'desc': 'Version Control & Collaboration'},
+    {'title': 'Isar DB', 'desc': 'Local database for Flutter'},
+
+    
   ];
 
   final ScrollController scrollController = ScrollController();
