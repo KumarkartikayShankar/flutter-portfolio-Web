@@ -120,7 +120,7 @@ class HomeContent extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildSocialButton('assets/instagram.png', 'Instagram', Colors.pink, () {
-            _launchURL('https://instagram.com/yourprofile');
+            _launchURL('https://www.instagram.com/kumar_kartikay._?igsh=MXUzcnd5dnU3N3k5MQ==');
           }),
           const SizedBox(width: 30),
           _buildSocialButton('assets/linkedin.png', 'LinkedIn', Colors.blueAccent, () {
