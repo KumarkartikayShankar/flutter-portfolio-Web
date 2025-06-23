@@ -7,7 +7,7 @@ class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
 
   final String _email = 'kumarkartikayshankar@gmail.com';
-  final String _phone = '+917903835313';
+  final String _phone = '7903835313';
 
   @override
   Widget build(BuildContext context) {
