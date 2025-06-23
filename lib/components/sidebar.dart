@@ -29,7 +29,8 @@ class _AppSidebarState extends State<AppSidebar> {
         if (isMobile) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text(''),
+              title:  Text(''),
+             iconTheme:  const IconThemeData(color: Colors.white),
               backgroundColor: Color(0xFF203A43),
               leading: Builder(
                 builder: (context) => IconButton(
@@ -118,6 +119,7 @@ class _AppSidebarState extends State<AppSidebar> {
     return [
       const DrawerHeader(
         decoration: BoxDecoration(color: Color(0xFF2C5364)),
+        
         child: Text(
           'K U M A R',
           style: TextStyle(color: Colors.white, fontSize: 24),
