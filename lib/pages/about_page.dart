@@ -67,7 +67,7 @@ class AboutPage extends StatelessWidget {
     {'title': 'Flutter', 'desc': 'Cross-platform UI toolkit'},
     {'title': 'Firebase', 'desc': 'Authentication & Database'},
     {'title': 'REST APIs', 'desc': 'API Integration & Handling'},
-    {'title': 'HTML CSS JS', 'desc': 'Clean & beautiful Website building'},
+    {'title': 'HTML CSS JavaScript', 'desc': 'Clean & beautiful Website building'},
     {'title': 'UI/UX Design', 'desc': 'Clean & Responsive Design'},
     {'title': 'MongoDB', 'desc': 'NoSQL database'},
     {'title': 'Deployment', 'desc':'Fast deployment of Web and Android app'},
