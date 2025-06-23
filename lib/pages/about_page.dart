@@ -62,89 +62,141 @@ class AboutPage extends StatelessWidget {
     );
   }
 
-  static Widget _buildSkillsGrid(BuildContext context) {
-    final List<Map<String, String>> skills = [
-      {'title': 'Flutter', 'desc': 'Cross-platform UI toolkit'},
-      {'title': 'Firebase', 'desc': 'Authentication & Database'},
-      {'title': 'REST APIs', 'desc': 'API Integration & Handling'},
-      {'title': 'UI/UX Design', 'desc': 'Clean & Responsive Design'},
-    ];
+ static Widget _buildSkillsGrid(BuildContext context) {
+  final List<Map<String, String>> skills = [
+    {'title': 'Flutter', 'desc': 'Cross-platform UI toolkit'},
+    {'title': 'Firebase', 'desc': 'Authentication & Database'},
+    {'title': 'REST APIs', 'desc': 'API Integration & Handling'},
+    {'title': 'UI/UX Design', 'desc': 'Clean & Responsive Design'},
+    {'title': 'Node.js', 'desc': 'Backend with Express.js'},
+    {'title': 'MongoDB', 'desc': 'NoSQL database'},
+    {'title': 'Isar DB', 'desc': 'Local database for Flutter'},
+    {'title': 'Git & GitHub', 'desc': 'Version Control & Collaboration'},
+  ];
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        int crossAxisCount = constraints.maxWidth < 600 ? 1 : 2;
+  final ScrollController scrollController = ScrollController();
 
-        return GridView.count(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          crossAxisCount: crossAxisCount,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
-          childAspectRatio: 3,
-          children: skills.map((skill) {
-            return MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                    colors: [Color(0xFF283E51), Color(0xFF485563)],
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.2),
-                      blurRadius: 12,
-                      spreadRadius: 2,
-                      offset: const Offset(0, 5),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      skill['title']!,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+  return StatefulBuilder(
+    builder: (context, setState) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+           SizedBox(
+              height: 300,
+              child: ListView.builder(
+                controller: scrollController,
+                scrollDirection: Axis.horizontal,
+                itemCount: skills.length,
+                itemBuilder: (context, index) {
+                  final skill = skills[index];
+                  return Container(
+                    width: 240,
+                    margin: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xFF283E51), Color(0xFF485563)],
                       ),
+                      borderRadius: BorderRadius.circular(12),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 12,
+                          spreadRadius: 2,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      skill['desc']!,
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 14,
-                      ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          skill['title']!,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          skill['desc']!,
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  );
+                },
               ),
-            );
-          }).toList(),
-        );
-      },
-    );
-  }
+            ),
+          
+          const SizedBox(height: 24),
+         Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Container(
+      decoration: const BoxDecoration(
+        color: Colors.tealAccent,
+        shape: BoxShape.circle,
+      ),
+      child: IconButton(
+        icon: const Icon(Icons.arrow_back_ios_new),
+        color: Colors.black,
+        onPressed: () {
+          scrollController.animateTo(
+            scrollController.offset - 300,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeInOut,
+          );
+        },
+      ),
+    ),
+    const SizedBox(width: 20),
+    Container(
+      decoration: const BoxDecoration(
+        color: Colors.tealAccent,
+        shape: BoxShape.circle,
+      ),
+      child: IconButton(
+        icon: const Icon(Icons.arrow_forward_ios),
+        color: Colors.black,
+        onPressed: () {
+          scrollController.animateTo(
+            scrollController.offset + 300,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeInOut,
+          );
+        },
+      ),
+    ),
+  ],
+),
+
+        ],
+      );
+    },
+  );
+}
+
 
   static Widget _buildExperienceTimeline() {
     final List<Map<String, String>> timeline = [
       {
-        'year': '2023',
-        'event': 'Started working with Flutter full-time on freelance projects.'
+        'year': '2025',
+        'event': 'Freelance Project Devlopment.'
       },
       {
         'year': '2024',
-        'event': 'Built and published multiple cross-platform apps using Flutter and Firebase.'
+        'event': 'Team Lead for Mobile app and web app Development.'
       },
       {
-        'year': '2025',
-        'event': 'Currently leading app development and mentoring juniors.'
+        'year': '2024',
+        'event': 'Flutter Developer Intern.'
       },
     ];
 

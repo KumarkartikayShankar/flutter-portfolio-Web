@@ -124,7 +124,7 @@ class HomeContent extends StatelessWidget {
           }),
           const SizedBox(width: 30),
           _buildSocialButton('assets/linkedin.png', 'LinkedIn', Colors.blueAccent, () {
-            _launchURL('https://linkedin.com/in/yourprofile');
+            _launchURL('https://www.linkedin.com/in/kumarkartikayshankar/');
           }),
         ],
       ),

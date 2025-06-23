@@ -10,36 +10,36 @@ class ProjectsPage extends StatelessWidget {
       'title': 'Arise App',
       'image': 'assets/arisephoto.png',
       'description': 'A DSA tracking app built with Flutter & Isar.',
-      'repo': 'https://github.com/yourusername/arise-app',
+      'repo': 'https://www.amazon.com/dp/B0DJFS8KQG/ref=apps_sf_sta',
     },
     {
       'title': 'Online Education Website',
-      'image': 'assets/images/education.png',
-      'description': 'Responsive web app built using Flutter Web.',
+      'image': 'assets/education_.png',
+      'description': 'Responsive web app built using Flutter Web,Node.js, AWS.',
       'repo': 'https://github.com/yourusername/edu-website',
     },
     {
       'title': 'Bajerse B2B E-commerce',
-      'image': 'assets/images/bajerse.png',
+      'image': 'assets/bajersee.png',
       'description': 'Wholesale B2B platform built with Flutter & Firebase.',
       'repo': 'https://github.com/yourusername/bajerse-app',
     },
     {
       'title': 'Cab and Renting App',
-      'image': 'assets/images/bajerse.png',
+      'image': 'assets/Gear On.png',
       'description': 'Cab app built with Flutter, Node.js, and AWS.',
       'repo': 'https://github.com/yourusername/cab-app',
     },
     {
       'title': 'Nike App',
       'image': 'assets/nikeapp.png',
-      'description': 'Personal portfolio made using Flutter Web.',
+      'description': 'Nike UI App Using Flutter.',
       'repo': 'https://github.com/yourusername/portfolio',
     },
     {
       'title': 'The Social',
       'image': 'assets/socialaphoto.png',
-      'description': 'Productivity app with tasks & reminders in Flutter.',
+      'description': 'Build Using Flutter Firebase CLI.',
       'repo': 'https://github.com/yourusername/todo-app',
     },
   ];
@@ -60,13 +60,19 @@ class ProjectsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Projects',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Projects',
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                _buildAnimatedProjectCounter(),
+              ],
             ),
             const SizedBox(height: 20),
             LayoutBuilder(
@@ -78,7 +84,8 @@ class ProjectsPage extends StatelessWidget {
                         ? 2
                         : 3;
 
-                double itemWidth = (maxWidth - (20 * (columnCount - 1))) / columnCount;
+                double itemWidth =
+                    (maxWidth - (20 * (columnCount - 1))) / columnCount;
 
                 return AnimationLimiter(
                   child: Wrap(
@@ -93,7 +100,8 @@ class ProjectsPage extends StatelessWidget {
                           child: FadeInAnimation(
                             child: SizedBox(
                               width: itemWidth,
-                              child: _buildProjectCard(context, projects[index]),
+                              child:
+                                  _buildProjectCard(context, projects[index]),
                             ),
                           ),
                         ),
@@ -104,7 +112,6 @@ class ProjectsPage extends StatelessWidget {
               },
             ),
             const SizedBox(height: 40),
-            _buildAnimatedProjectCounter(),
           ],
         ),
       ),
@@ -112,7 +119,9 @@ class ProjectsPage extends StatelessWidget {
   }
 
   Widget _buildProjectCard(BuildContext context, Map<String, String> project) {
-    final card = Container(
+    final bool isAriseApp = project['title'] == 'Arise App';
+
+    return Container(
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           colors: [Color(0xFF283E51), Color(0xFF485563)],
@@ -164,60 +173,62 @@ class ProjectsPage extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 10),
-          InkWell(
-            onTap: () => _launchURL(project['repo']!),
-            child: const Text(
-              'View Repository →',
-              style: TextStyle(
-                color: Colors.tealAccent,
-                fontSize: 13,
-                decoration: TextDecoration.underline,
+
+          // Show view button only for Arise App
+          if (isAriseApp)
+            ElevatedButton(
+              onPressed: () => _launchURL(project['repo']!),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.tealAccent,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
+              child: const Text('Download'),
             ),
-          ),
         ],
       ),
     );
-
-    return card;
   }
 
   Widget _buildAnimatedProjectCounter() {
-    return  Row(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TweenAnimationBuilder<int>(
-            tween: IntTween(begin: 0, end: 10),
-            duration: const Duration(seconds: 3),
-            builder: (context, value, child) {
-              return Text(
-                '$value${value == 10 ? '' : ''} Deployment',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                ),
-              );
-            },
-          ),
-          SizedBox(width: 16,),
-          TweenAnimationBuilder<int>(
-            tween: IntTween(begin: 0, end: 30),
-            duration: const Duration(seconds: 3),
-            builder: (context, value, child) {
-              return Text(
-                '$value${value == 30 ? '+' : ''} Projects',
-                style: const TextStyle(
-                  color: Colors.tealAccent,
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                ),
-              );
-            },
-          ),
-        ],
-      );
-    
+      children: [
+        TweenAnimationBuilder<int>(
+          tween: IntTween(begin: 0, end: 10),
+          duration: const Duration(seconds: 3),
+          builder: (context, value, child) {
+            return Text(
+              '$value Deployment',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
+            );
+          },
+        ),
+        const SizedBox(width: 16),
+        TweenAnimationBuilder<int>(
+          tween: IntTween(begin: 0, end: 30),
+          duration: const Duration(seconds: 3),
+          builder: (context, value, child) {
+            return Text(
+              '$value${value == 30 ? '+' : ''} Projects',
+              style: const TextStyle(
+                color: Colors.tealAccent,
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
+            );
+          },
+        ),
+      ],
+    );
   }
 
   void _launchURL(String url) async {

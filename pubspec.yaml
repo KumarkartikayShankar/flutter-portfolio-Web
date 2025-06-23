@@ -71,6 +71,9 @@ flutter:
     - assets/arisephoto.png
     - assets/socialaphoto.png
     - assets/nikeapp.png
+    - assets/education_.png
+    - assets/bajersee.png
+    - assets/Gear On.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

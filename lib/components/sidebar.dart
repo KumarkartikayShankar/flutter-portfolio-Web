@@ -117,7 +117,7 @@ class _AppSidebarState extends State<AppSidebar> {
   List<Widget> _buildMobileDrawerItems() {
     return [
       const DrawerHeader(
-        decoration: BoxDecoration(color: Color.fromARGB(255, 48, 24, 13)),
+        decoration: BoxDecoration(color: Color(0xFF2C5364)),
         child: Text(
           'K U M A R',
           style: TextStyle(color: Colors.white, fontSize: 24),
