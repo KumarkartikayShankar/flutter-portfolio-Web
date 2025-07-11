@@ -61,15 +61,17 @@ class LoadingScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             // Your custom PNG logo
-            Image.asset(
-              'assets/kumarcircular.png', // Update with your actual path
-              width: 150,
-              height: 150,
-              fit: BoxFit.contain,
-              // Add error builder in case image fails to load
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(Icons.person, size: 100);
-              },
+            Center(
+              child: Image.asset(
+                'assets/kumarcircular.png', // Update with your actual path
+                width: 150,
+                height: 150,
+                fit: BoxFit.contain,
+                // Add error builder in case image fails to load
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(Icons.person, size: 100);
+                },
+              ),
             ),
             
           ],

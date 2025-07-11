@@ -6,30 +6,35 @@ class EducationPage extends StatelessWidget {
 
   final List<Map<String, String>> educationItems = const [
     {
-      'title': 'Bachelor of Engineering',
-      'image': 'assets/arisephoto.png',
-      'description': 'Computer Science, XYZ University (2020–2024)',
+      'title': 'Award for Excellence in Academics',
+      'image': 'assets/Deans1.png',
+      'description': 'First Semester (2020–2024)',
     },
     {
-      'title': 'Flutter Workshop',
-      'image': 'assets/arisephoto.png',
-      'description': 'Built full-stack app using Flutter, Node.js, MongoDB.',
+      'title': 'Award for Excellence in Academics',
+      'image': 'assets/Deans2.png',
+      'description': 'Second Semester.',
     },
     {
-      'title': 'AI Bootcamp',
-      'image': 'assets/arisephoto.png',
-      'description': 'Completed hands-on training in ML & Deep Learning.',
+      'title': 'Award for Excellence in Academics',
+      'image': 'assets/Deans3.png',
+      'description': 'Third Semester.',
     },
     {
-      'title': 'Java Certification',
-      'image': 'assets/arisephoto.png',
-      'description': 'Certified in Java Fundamentals by Oracle Academy.',
+      'title': 'Award for Excellence in Academics',
+      'image': 'assets/Deans4.png',
+      'description': 'Fourth Semester.',
     },
     {
-      'title': 'AWS Cloud Training',
-      'image': 'assets/arisephoto.png',
-      'description': 'Cloud concepts, EC2, and serverless computing.',
+      'title': 'Senior Secondary Academic Recognition',
+      'image': 'assets/paper5.png',
+      'description': 'Publicly recognized for Excellent performance in Senior Secondary board examinations.',
     },
+    {
+      'title': 'Awarded for Academic Excellence by Renowned DRDO Scientist',
+      'image': 'assets/dav6.png',
+      'description': 'Received academic excellence award from M.B. Verma, former DRDO scientist who contributed to the Tejas fighter jet project, for excellent performance in Secondary (Class 10) board examinations.',
+    }
   ];
 
   @override

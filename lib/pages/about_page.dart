@@ -195,11 +195,11 @@ class AboutPage extends StatelessWidget {
       },
       {
         'year': '2024',
-        'event': 'Team Lead for Mobile app and web app Development.'
+        'event': 'Team Lead for Mobile app and web app Development at AjBajarse Golamart.'
       },
       {
         'year': '2024',
-        'event': 'Flutter Developer Intern.'
+        'event': 'Flutter Developer Intern at AjBajarse Golamart.'
       },
     ];
 
