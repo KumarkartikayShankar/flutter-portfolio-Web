@@ -218,7 +218,7 @@ class ProjectsPage extends StatelessWidget {
           duration: const Duration(seconds: 3),
           builder: (context, value, child) {
             return Text(
-              '$value${value == 30 ? '+' : ''} Projects',
+              '$value${value == 50 ? '+' : ''} Projects',
               style: const TextStyle(
                 color: Colors.tealAccent,
                 fontSize: 26,
