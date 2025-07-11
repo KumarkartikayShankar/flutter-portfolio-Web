@@ -214,7 +214,7 @@ class ProjectsPage extends StatelessWidget {
         ),
         const SizedBox(width: 16),
         TweenAnimationBuilder<int>(
-          tween: IntTween(begin: 0, end: 30),
+          tween: IntTween(begin: 0, end: 50),
           duration: const Duration(seconds: 3),
           builder: (context, value, child) {
             return Text(
