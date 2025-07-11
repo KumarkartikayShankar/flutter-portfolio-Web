@@ -8,12 +8,12 @@ class EducationPage extends StatelessWidget {
     {
       'title': 'Award for Excellence in Academics',
       'image': 'assets/Deans1.png',
-      'description': 'First Semester (2020–2024)',
+      'description': 'First Semester.',
     },
     {
-      'title': 'Award for Excellence in Academics',
+      'title': 'Dean’s List Honoree & Event Host',
       'image': 'assets/Deans2.png',
-      'description': 'Second Semester.',
+      'description': 'Hosted a prestigious university event and was included in the Dean’s List for academic excellence - Second Semester.',
     },
     {
       'title': 'Award for Excellence in Academics',
