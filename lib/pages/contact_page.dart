@@ -22,9 +22,9 @@ class _ContactPageState extends State<ContactPage> {
   final String _phone = '7903835313';
 
   Future<void> _submitForm() async {
-    final url = Uri.parse('http://127.0.0.1:5000/contact'); // Use your IP on real device
-
+    final url = Uri.parse('https://portfolioweb-backend-final.vercel.app/contact'); // Use your IP on real device 
     try {
+      print('going');
       final response = await http.post(
         url,
         headers: {'Content-Type': 'application/json'},
@@ -36,8 +36,9 @@ class _ContactPageState extends State<ContactPage> {
       );
 
       final result = jsonDecode(response.body);
-
+      print(result);
       if (response.statusCode == 200 && result['success'] == true) {
+        print('200//');
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Message sent successfully!')),
         );
