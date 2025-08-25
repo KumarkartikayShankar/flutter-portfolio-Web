@@ -38,7 +38,7 @@ class AboutPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'I am a passionate Flutter developer with experience in building beautiful, responsive applications for Web, Android and iOS platforms. I love turning ideas into real apps!',
+                  'I am a passionate Software developer with experience in building beautiful, responsive applications for Web, Android and iOS platforms. I love turning ideas into real apps!',
                   style: TextStyle(fontSize: 16, color: Colors.white70),
                 ),
                 const SizedBox(height: 30),

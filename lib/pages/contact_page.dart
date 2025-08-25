@@ -140,7 +140,7 @@ class _ContactPageState extends State<ContactPage> {
   }
 
   Widget _buildTextField(TextEditingController controller, String label, {int maxLines = 1}) {
-    return TextField(
+    return TextFormField( // Changed to TextFormField for validation
       controller: controller,
       maxLines: maxLines,
       style: const TextStyle(color: Colors.white),
@@ -154,6 +154,15 @@ class _ContactPageState extends State<ContactPage> {
           borderSide: BorderSide.none,
         ),
       ),
+      validator: (value) { // Example validator
+        if (value == null || value.isEmpty) {
+          return 'Please enter your $label';
+        }
+        if (label == "Email" && !RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+          return 'Please enter a valid email address';
+        }
+        return null;
+      },
     );
   }
 
@@ -162,6 +171,7 @@ class _ContactPageState extends State<ContactPage> {
     final isMobile = MediaQuery.of(context).size.width < 600;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false, // This is the fix for the keyboard issue
       backgroundColor: Colors.black,
       body: Container(
         width: double.infinity,
@@ -208,7 +218,11 @@ class _ContactPageState extends State<ContactPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: _isLoading ? null : _submitForm,
+                            onPressed: _isLoading ? null : () {
+                              if (_formKey.currentState!.validate()) {
+                                _submitForm();
+                              }
+                            },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.indigoAccent,
                               padding: const EdgeInsets.symmetric(vertical: 14),
@@ -242,7 +256,7 @@ class _ContactPageState extends State<ContactPage> {
                         SelectableText.rich(
                           TextSpan(
                             text: '📧 ',
-                            style: const TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white, fontSize: 16),
                             children: [
                               TextSpan(
                                 text: _email,
@@ -260,7 +274,7 @@ class _ContactPageState extends State<ContactPage> {
                         SelectableText.rich(
                           TextSpan(
                             text: '📞 ',
-                            style: const TextStyle(color: Colors.white),
+                            style: const TextStyle(color: Colors.white, fontSize: 16),
                             children: [
                               TextSpan(
                                 text: _phone,
