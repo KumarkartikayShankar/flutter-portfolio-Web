@@ -50,7 +50,7 @@ class _AppSidebarState extends State<AppSidebar> {
           );
         }
 
-        // Desktop/tablet layout with custom gradient background
+        // Desktop/tablet layout
         return Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -67,10 +67,13 @@ class _AppSidebarState extends State<AppSidebar> {
             items: _buildSidebarItems(),
             title: 'K U M A R',
             body: widget.body,
+            onTitleTap: () {
+               setState(() => _isCollapsed = !_isCollapsed);
+            },
             toggleTitle: _isCollapsed ? 'Expand' : 'Collapse',
             toggleButtonIcon: _isCollapsed ? Icons.menu_open : Icons.menu,
             backgroundColor: Colors.grey.shade900,
-            selectedIconBox: Colors.grey.shade900,
+            selectedIconBox: Colors.indigoAccent.withOpacity(0.5),
             selectedTextColor: Colors.white,
             unselectedIconColor: Colors.white70,
             textStyle: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
@@ -80,7 +83,7 @@ class _AppSidebarState extends State<AppSidebar> {
               color: Colors.white,
             ),
             avatarImg: const AssetImage('assets/kartikaycircle.png'),
-            sidebarBoxShadow: [
+            sidebarBoxShadow: const [
               BoxShadow(
                 color: Color.fromARGB(255, 46, 56, 60),
                 blurRadius: 20,
@@ -97,21 +100,23 @@ class _AppSidebarState extends State<AppSidebar> {
 
   List<CollapsibleItem> _buildSidebarItems() {
     return [
-      _buildNavItem(0, Icons.home_outlined, Icons.home_filled, 'Home'),
+      _buildNavItem(0, Icons.home_outlined, Icons.home, 'Home'),
       _buildNavItem(1, Icons.person_outline, Icons.person, 'About'),
-      _buildNavItem(2, Icons.school_outlined, Icons.school, 'Awards'), // ✅ New
+      _buildNavItem(2, Icons.school_outlined, Icons.school, 'Awards'),
       _buildNavItem(3, Icons.work_outline, Icons.work, 'Projects'),
-      _buildNavItem(4, Icons.email_outlined, Icons.email, 'Contact'),
+      // The unselected icon for Contact is now different
+      _buildNavItem(4, Icons.send_outlined, Icons.send, 'Contact'),
     ];
   }
 
-  CollapsibleItem _buildNavItem(
-      int index, IconData outlineIcon, IconData filledIcon, String text) {
+  CollapsibleItem _buildNavItem(int index, IconData unselectedIcon, IconData selectedIcon, String text) {
     final isSelected = widget.currentIndex == index;
     return CollapsibleItem(
       text: text,
-      icon: isSelected ? filledIcon : outlineIcon,
+      // CORRECTED: This now correctly passes IconData, not a Widget
+      icon: isSelected ? selectedIcon : unselectedIcon,
       onPressed: () => widget.onItemSelected(index),
+      isSelected: isSelected,
     );
   }
 
@@ -126,9 +131,9 @@ class _AppSidebarState extends State<AppSidebar> {
       ),
       _buildDrawerItem(0, Icons.home, 'Home'),
       _buildDrawerItem(1, Icons.person, 'About'),
-      _buildDrawerItem(2, Icons.school, 'Awards'), // ✅ New
+      _buildDrawerItem(2, Icons.school, 'Awards'),
       _buildDrawerItem(3, Icons.work, 'Projects'),
-      _buildDrawerItem(4, Icons.email, 'Contact'),
+      _buildDrawerItem(4, Icons.send, 'Contact'), // Updated icon here too
     ];
   }
 
@@ -136,6 +141,7 @@ class _AppSidebarState extends State<AppSidebar> {
     final isSelected = widget.currentIndex == index;
     return ListTile(
       selected: isSelected,
+      selectedTileColor: Colors.indigoAccent.withOpacity(0.3),
       leading: Icon(icon, color: isSelected ? Colors.white : Colors.white70),
       title: Text(
         label,

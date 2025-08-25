@@ -28,7 +28,7 @@ class ProjectsPage extends StatelessWidget {
       'title': 'Cab and Renting App',
       'image': 'assets/Gear On.png',
       'description': 'Cab app built with Flutter, Node.js, and AWS.',
-      'repo': 'https://github.com/yourusername/cab-app',
+      'repo': 'https://play.google.com/store/apps/details?id=com.gearon.gearonjaipur&hl=en',
     },
     {
       'title': 'Nike App',
@@ -119,7 +119,9 @@ class ProjectsPage extends StatelessWidget {
   }
 
   Widget _buildProjectCard(BuildContext context, Map<String, String> project) {
-    final bool isAriseApp = project['title'] == 'Arise App';
+    // Check if the project should have a download button
+    final bool hasDownloadButton = project['title'] == 'Arise App' || 
+                                   project['title'] == 'Cab and Renting App';
 
     return Container(
       decoration: BoxDecoration(
@@ -174,8 +176,8 @@ class ProjectsPage extends StatelessWidget {
           ),
           const SizedBox(height: 10),
 
-          // Show view button only for Arise App
-          if (isAriseApp)
+          // Show download button for apps that have store links
+          if (hasDownloadButton)
             ElevatedButton(
               onPressed: () => _launchURL(project['repo']!),
               style: ElevatedButton.styleFrom(

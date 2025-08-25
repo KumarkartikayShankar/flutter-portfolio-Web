@@ -20,9 +20,84 @@ class _ContactPageState extends State<ContactPage> {
 
   final String _email = 'kumarkartikayshankar@gmail.com';
   final String _phone = '7903835313';
+  
+  bool _isLoading = false;
+
+  // Professional minimal success dialog
+  void _showSuccessDialog() {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: const Color(0xFF1A1A1A),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          contentPadding: const EdgeInsets.all(24),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 4,
+                    height: 20,
+                    decoration: const BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.all(Radius.circular(2)),
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  const Text(
+                    'Message Sent',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                'Thank you for reaching out. Kumar Kartikay Shankar will contact you soon.',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.white70,
+                  height: 1.4,
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              ),
+              child: const Text(
+                'OK',
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   Future<void> _submitForm() async {
-    final url = Uri.parse('https://portfolioweb-backend-final.vercel.app/contact'); // Use your IP on real device 
+    setState(() {
+      _isLoading = true;
+    });
+
+    final url = Uri.parse('https://portfolioweb-backend-final.vercel.app/contact');
     try {
       print('going');
       final response = await http.post(
@@ -39,12 +114,15 @@ class _ContactPageState extends State<ContactPage> {
       print(result);
       if (response.statusCode == 200 && result['success'] == true) {
         print('200//');
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Message sent successfully!')),
-        );
+        
+        // Clear form fields
         _nameController.clear();
         _emailController.clear();
         _messageController.clear();
+        
+        // Show success dialog
+        _showSuccessDialog();
+        
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Error: ${result['error'] ?? 'Failed to send message'}')),
@@ -54,6 +132,10 @@ class _ContactPageState extends State<ContactPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error sending message: $e')),
       );
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 
@@ -126,7 +208,7 @@ class _ContactPageState extends State<ContactPage> {
                         SizedBox(
                           width: double.infinity,
                           child: ElevatedButton(
-                            onPressed: _submitForm,
+                            onPressed: _isLoading ? null : _submitForm,
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.indigoAccent,
                               padding: const EdgeInsets.symmetric(vertical: 14),
@@ -134,10 +216,19 @@ class _ContactPageState extends State<ContactPage> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-                            child: const Text(
-                              'Send Message',
-                              style: TextStyle(fontSize: 16, color: Colors.white),
-                            ),
+                            child: _isLoading
+                                ? const SizedBox(
+                                    height: 20,
+                                    width: 20,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : const Text(
+                                    'Send Message',
+                                    style: TextStyle(fontSize: 16, color: Colors.white),
+                                  ),
                           ),
                         ),
                         const SizedBox(height: 32),
